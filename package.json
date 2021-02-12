@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/fDevJc/jistagram#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -29,6 +30,7 @@
     "sequelize-cli": "^6.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "prettier": "2.2.1"
   }
 }
