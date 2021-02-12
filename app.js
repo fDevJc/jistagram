@@ -7,6 +7,7 @@ const dotenv = require('dotenv');
 const nunjucks = require('nunjucks');
 
 const indexRouter = require('./routes');
+const accountRouter = require('./routes/accounts');
 
 dotenv.config();
 
@@ -39,6 +40,7 @@ app.use(
 );
 
 app.use('/', indexRouter);
+app.use('/accounts', accountRouter);
 
 app.listen(app.get('port'), () => {
   console.log(`port: ${app.get('port')}, server running........`);
