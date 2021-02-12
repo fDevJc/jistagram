@@ -2,10 +2,22 @@ const express = require('express');
 const morgan = require('morgan');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
+const path = require('path');
+const dotenv = require('dotenv');
+const nunjucks = require('nunjucks');
+
+const indexRouter = require('./routes');
+
+dotenv.config();
 
 const app = express();
 
 app.set('port', process.env.PORT || 8080);
+app.set('view engine', 'html');
+nunjucks.configure('views', {
+  express: app,
+  watch: true,
+});
 
 //
 app.use(morgan('dev'));
@@ -26,9 +38,7 @@ app.use(
   })
 );
 
-app.get('/', (req, res) => {
-  res.send('hello jistagram');
-});
+app.use('/', indexRouter);
 
 app.listen(app.get('port'), () => {
   console.log(`port: ${app.get('port')}, server running........`);

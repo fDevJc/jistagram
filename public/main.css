@@ -1,0 +1,19 @@
+div.login_main {
+  width: 80%;
+  height: 700px;
+  border: 1px solid #000;
+}
+
+div.login_left {
+  width: 50%;
+  float: left;
+  height: 100%;
+  background-color: red;
+}
+
+div.login_right {
+  width: 50%;
+  float: right;
+  height: 100%;
+  box-sizing: border-box;
+}
