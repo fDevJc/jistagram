@@ -1,12 +1,37 @@
 {% extends 'layout.html' %}
-<!---->
+<!--html-->
 {% block content %}
 <div>
   <div>jistagram</div>
   <div>친구들의 사진과 동영상을 보려면 가입하세요</div>
-  <div><input type="text" /></div>
-  <div><input type="text" /></div>
-  <div><input type="text" /></div>
-  <div><input type="text" /></div>
+  <form id="signup-form" action="/accounts/emailsignup" method="POST">
+    <div>
+      <label for="signup-email">이메일</label>
+      <input if="signup-email" type="email" name="email" />
+    </div>
+    <div>
+      <label for="signup-nick">닉네임</label>
+      <input id="signup-nick" type="text" name="nick" />
+    </div>
+    <div>
+      <label for="signup-name">이름</label>
+      <input id="signup-name" type="text" name="name" />
+    </div>
+    <div>
+      <label for="signup-pwd">비밀번호</label>
+      <input id="signup-pwd" type="password" name="password" />
+    </div>
+    <button id="signup-btn" type="submit">가입</button>
+  </form>
 </div>
-{% endblock %} {% block script %} {% endblock %}
+{% endblock %}
+<!--script-->
+{% block script %}
+<script>
+  window.onload = () => {
+    if (new URL(location.href).searchParams('error') === 'exist') {
+      alert(new URL(location.href).searchParams('error'));
+    }
+  };
+</script>
+{% endblock %}

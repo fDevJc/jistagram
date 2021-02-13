@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="/main.css" />
   </head>
   <body>
+    <div>
+      <div>로고</div>
+      <div>
+        <form id="hashtag-form" action="/hashtag">
+          <input type="text" name="hashtag" placeholder="태그 검색" />
+          <button class="btn">검색</button>
+        </form>
+      </div>
+      <div>개인메뉴</div>
+    </div>
     <center>
       {% block content %} {% endblock %} {% block script %} {% endblock %}
     </center>
