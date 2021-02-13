@@ -180,7 +180,6 @@ footer {
 div.main {
   width: 70%;
   height: 700px;
-  border: 1px solid #000;
 }
 
 div.login_left {
@@ -200,7 +199,6 @@ div.main_left {
   width: 70%;
   float: left;
   height: 100%;
-  background-color: navy;
 }
 
 div.main_right {

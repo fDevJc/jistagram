@@ -9,6 +9,8 @@ const passport = require('passport');
 
 const pageRouter = require('./routes/page');
 const accountRouter = require('./routes/accounts');
+const postRouter = require('./routes/post');
+
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
@@ -30,6 +32,7 @@ sequelize
 //
 app.use(morgan('dev'));
 app.use('/', express.static(path.join(__dirname, 'public')));
+app.use('/img', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -51,6 +54,7 @@ app.use(passport.session());
 
 app.use('/', pageRouter);
 app.use('/accounts', accountRouter);
+app.use('/post', postRouter);
 
 app.use((req, res, next) => {
   const err = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

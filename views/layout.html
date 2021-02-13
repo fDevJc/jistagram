@@ -21,11 +21,18 @@
       </div>
       <div>개인메뉴</div>
     </div>
-    <center>
-      {% block content %} {% endblock %} {% block script %} {% endblock %}
-    </center>
+    <center>{% block content %} {% endblock %}</center>
     <footer>
       <center>made by jc</center>
     </footer>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+      window.onload = () => {
+        if (new URL(location.href).searchParams.get('loginError')) {
+          alert(new URL(location.href).searchParams.get('loginError'));
+        }
+      };
+    </script>
+    {% block script %} {% endblock %}
   </body>
 </html>
