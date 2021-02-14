@@ -37,7 +37,7 @@ router.post('/', upload2.none(), async (req, res, next) => {
     await Post.create({
       content: req.body.content,
       img: req.body.url,
-      UserId: req.user.id,
+      AccountId: req.user.id,
     });
 
     res.redirect('/');

@@ -1,7 +1,7 @@
 const express = require('express');
 
 const { isLoggedIn, isNotLoggedIn } = require('../routes/middlewares');
-const { Post, Account } = require('../models');
+const { Post, Account, Comment } = require('../models');
 
 const router = express.Router();
 
@@ -16,6 +16,10 @@ router.get('/', async (req, res, next) => {
           model: Account,
           attributes: ['id', 'nick'],
         },
+        include: {
+          model: Comment,
+          attributes: ['nick', 'content'],
+        },
         order: [['createdAt', 'DESC']],
       });
     } catch (err) {
@@ -25,7 +29,7 @@ router.get('/', async (req, res, next) => {
   console.log('>>>>>>>>>>>', posts);
   res.render(page, {
     title: 'jistagram',
-    twits: posts,
+    posts: posts,
   });
 });
 

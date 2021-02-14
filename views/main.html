@@ -1,17 +1,27 @@
 {% extends 'layout.html' %}
 <!---->
 {% block content %}
+<div>
+  <div>로고</div>
+  <div>
+    <form id="hashtag-form" action="/hashtag">
+      <input type="text" name="hashtag" placeholder="태그 검색" />
+      <button class="btn">검색</button>
+    </form>
+  </div>
+  <div><a href="/profile">프로필</div>
+</div>
 <div class="main">
   <div class="main_left">
     <div>
       <form
-        id="twit-form"
+        id="post-form"
         action="/post"
         method="post"
         enctype="multipart/form-data"
       >
         <div class="input-group">
-          <textarea id="twit" name="content" maxlength="140"></textarea>
+          <textarea id="post" name="content" maxlength="140"></textarea>
         </div>
         <div class="img-preview">
           <img
@@ -26,22 +36,40 @@
         <div>
           <label id="img-label" for="img">사진 업로드</label>
           <input id="img" type="file" accept="image/*" />
-          <button id="twit-btn" type="submit" class="btn">업로드</button>
+          <button id="post-btn" type="submit" class="btn">업로드</button>
         </div>
       </form>
     </div>
     <div>스토리</div>
     <div>
-      <div class="twits">
-        {% for twit in twits %}
-        <div class="twit">
-          <input type="hidden" value="{{twit.User.id}}" class="twit-user-id" />
-          <input type="hidden" value="{{twit.id}}" class="twit-id" />
-          <div class="twit-author">{{twit.User.nick}}</div>
-          <div class="twit-content">{{twit.content}}</div>
-          {% if twit.img %}
-          <div class="twit-img"><img src="{{twit.img}}" alt="섬네일" /></div>
+      <div class="posts">
+        {% for post in posts %}
+        <div class="post">
+          <input
+            type="hidden"
+            value="{{post.Account.id}}"
+            class="post-user-id"
+          />
+          <input type="hidden" value="{{post.id}}" class="post-id" />
+          <div class="post-author">{{post.Account.nick}}</div>
+
+          {% if post.img %}
+          <div class="post-img"><img src="{{post.img}}" alt="섬네일" /></div>
           {% endif %}
+          <div style="background-color: red">좋아요 , 기타등등</div>
+          <div class="post-content">{{post.Account.nick}} {{post.content}}</div>
+
+          {% for comment in post.Comments %}
+          <div>{{comment.nick}} - {{comment.content}}</div>
+          {% endfor %}
+          <div style="background-color: red">
+            <form action="/comment" method="POST">
+              <input type="hidden" value="{{post.id}}" name="postId" />
+              <input type="hidden" value="{{post.Account.nick}}" name="nick" />
+              <input type="text" name="content" />
+              <button type="submit">게시</button>
+            </form>
+          </div>
         </div>
         {% endfor %}
       </div>
@@ -74,11 +102,11 @@
         });
     });
   }
-  document.querySelectorAll('.twit-follow').forEach(function (tag) {
+  document.querySelectorAll('.post-follow').forEach(function (tag) {
     tag.addEventListener('click', function () {
       const myId = document.querySelector('#my-id');
       if (myId) {
-        const userId = tag.parentNode.querySelector('.twit-user-id').value;
+        const userId = tag.parentNode.querySelector('.post-user-id').value;
         if (userId !== myId.value) {
           if (confirm('팔로잉하시겠습니까?')) {
             axios

@@ -99,7 +99,7 @@ textarea {
     width: 500px;
   }
 }
-#twit-form {
+#post-form {
   border-bottom: 1px solid silver;
   padding: 10px;
   background: lightcoral;
@@ -122,29 +122,29 @@ textarea {
 #img {
   display: none;
 }
-#twit {
+#post {
   width: 100%;
   min-height: 72px;
 }
-#twit-btn {
+#post-btn {
   float: right;
   color: white;
   background: crimson;
   border: none;
 }
-.twit {
+.post {
   border: 1px solid silver;
   border-radius: 4px;
   padding: 10px;
   position: relative;
   margin-bottom: 10px;
 }
-.twit-author {
+.post-author {
   display: inline-block;
   font-weight: bold;
   margin-right: 10px;
 }
-.twit-follow {
+.post-follow {
   padding: 1px 5px;
   background: #fff;
   border: 1px solid silver;
@@ -153,11 +153,11 @@ textarea {
   font-size: 12px;
   cursor: pointer;
 }
-.twit-img {
+.post-img {
   text-align: center;
 }
-.twit-img img {
-  max-width: 75%;
+.post-img img {
+  max-width: 100%;
 }
 .error-message {
   color: red;
